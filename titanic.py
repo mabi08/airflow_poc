@@ -9,7 +9,7 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
 
 default_args = {
-    "owner": "x",
+    "owner": "y",
     "depends_on_past": False,
     "start_date": datetime(2020, 6, 1),
     "email": ["airflow@airflow.com"],
@@ -70,12 +70,12 @@ def read_s3_data(**kwargs):
 #     dag=dag)
 
 t1 = PythonOperator(
-    task_id='data_processing', python_callable=read_s3_data, op_kwargs={
+    task_id='read_s3_data', python_callable=read_s3_data, op_kwargs={
     }, dag=dag)
 
 
-# t2 = PythonOperator(
-#     task_id='data_processing', python_callable=data_processing, op_kwargs={
-#     }, dag=dag)
+t2 = PythonOperator(
+    task_id='read_s3_data', python_callable=read_s3_data, op_kwargs={
+    }, dag=dag)
 
-t1 
+t1 >> t2
