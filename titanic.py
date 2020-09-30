@@ -65,7 +65,7 @@ t1 = KubernetesPodOperator(
     image="mabi/titanic-airflow:latest",
     task_id='read_s3_data',
     namespace="airflow-ng",
-    name="read_s3_data",
+    name="read-s3-data",
     dag=dag)
 
 # t2 = PythonOperator(
