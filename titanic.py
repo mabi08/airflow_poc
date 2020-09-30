@@ -64,6 +64,7 @@ def read_s3_data(**kwargs):
 t1 = KubernetesPodOperator(
     image="mabi/titanic-airflow:latest",
     task_id='read_s3_data',
+    namespace="airflow-ng",
     dag=dag)
 
 # t2 = PythonOperator(
