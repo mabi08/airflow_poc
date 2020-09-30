@@ -59,7 +59,11 @@ def read_s3_data(**kwargs):
 #         dataset['not_alone'] = dataset['not_alone'].astype(int)
 #     train_df['not_alone'].value_counts()
 
-    #return addition * context['num1']
+#     return addition * context['num1']
+
+
+def data_processing(**context):
+    print("t2")
 
 
 # t1 = KubernetesPodOperator(
@@ -75,7 +79,7 @@ t1 = PythonOperator(
 
 
 t2 = PythonOperator(
-    task_id='read_s3_data', python_callable=read_s3_data, op_kwargs={
+    task_id='data_processing', python_callable=data_processing, op_kwargs={
     }, dag=dag)
 
 t1 >> t2
