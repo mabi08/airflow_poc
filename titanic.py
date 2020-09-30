@@ -28,6 +28,7 @@ dag = DAG("titanic", default_args=default_args, schedule_interval=timedelta(100)
 
 
 def read_s3_data(**kwargs):
+    print("start reading data")
     session = boto3.Session(
         aws_access_key_id="ASIA3YJRNBGTJSIT2JPA",
         aws_secret_access_key="lpaWsZeBlMGT8idrKzFRtt3oDPAERiJnF45hKww9",
@@ -82,4 +83,5 @@ t2 = PythonOperator(
     task_id='data_processing', python_callable=data_processing, op_kwargs={
     }, dag=dag)
 
-t1 >> t2
+
+t1.set_downstream(t2)
