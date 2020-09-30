@@ -28,9 +28,7 @@ dag = DAG("titanic", default_args=default_args, schedule_interval=timedelta(100)
 def read_s3_data(**kwargs):
     print("start reading data")
     session = boto3.Session(
-        aws_access_key_id="ASIA3YJRNBGTJSIT2JPA",
-        aws_secret_access_key="lpaWsZeBlMGT8idrKzFRtt3oDPAERiJnF45hKww9",
-        aws_session_token="FwoGZXIvYXdzEEIaDBAeozeQ8KSSzkesjSKxAV9dBAYlFCBLZYGeK1G2e4DVpmOAD7o3ch25lxreCf08YZEpCCdK7QSWj5aMa6Dzm27YFgt9bAR2oN55TfUlMyLzhfNKrGX/T/1B4Uf0ASmrQsXl4SWM8KREhvEwlH45sH5cG5uMCxWSM0esIoWFWKZsO3c+ip3s5fvCpvesLFaTSM5sy/xH03c82h3UlOs2c4TWudLVpfCZrEqYu7sZC1/WP8Y8A7K/C+64I0WSDGmwHSipiNH7BTItyrX5nJeo6dCKmU7/twkuM/iUUBVaEd8EBRFPKTLeiLk3nkteF3rOkDG+xvRU"
+       
     )
  
     bucket = "datalake-eu-central-1-dev"    
