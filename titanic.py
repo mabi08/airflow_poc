@@ -9,14 +9,14 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
 
 default_args = {
-    "owner": "steffen",
+    "owner": "uia81723",
     "depends_on_past": False,
     "start_date": datetime(2020, 6, 1),
     "email": ["airflow@airflow.com"],
     "email_on_failure": False,
     "email_on_retry": False,
-    "retries": 1,
-    "retry_delay": timedelta(minutes=5),
+    "retries": 0,
+    #"retry_delay": timedelta(minutes=5),
     'provide_context': True
     # 'queue': 'bash_queue',
     # 'pool': 'backfill',
@@ -24,7 +24,7 @@ default_args = {
     # 'end_date': datetime(2016, 1, 1),
 }
 
-dag = DAG("titanic", default_args=default_args, schedule_interval=timedelta(1))
+dag = DAG("titanic", default_args=default_args, schedule_interval=timedelta(100))
 
 
 def read_s3_data(**kwargs):

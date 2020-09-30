@@ -1,4 +1,4 @@
-FROM apache/airflow:1.10.10-python3.6
+FROM apache/airflow:v1-10-test-python3.7-build
 
 USER root
 RUN pip3 install seaborn pandas numpy matplotlib sklearn boto3 
