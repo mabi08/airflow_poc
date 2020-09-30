@@ -45,6 +45,7 @@ def read_s3_data(**kwargs):
     test_df = pd.read_csv(test_response['Body'], delimiter=',')
     train_df = pd.read_csv(train_response['Body'], delimiter=',')
 
+    print(train_df)
     return test_df, train_df
 
 
@@ -61,16 +62,20 @@ def read_s3_data(**kwargs):
     #return addition * context['num1']
 
 
-t1 = KubernetesPodOperator(
-    image="python:3.8-slim",
-    task_id='read_s3_data',
-    namespace="airflow-ng",
-    name="read-s3-data",
-    dag=dag)
+# t1 = KubernetesPodOperator(
+#     image="python:3.8-slim",
+#     task_id='read_s3_data',
+#     namespace="airflow-ng",
+#     name="read-s3-data",
+#     dag=dag)
+
+t1 = PythonOperator(
+    task_id='data_processing', python_callable=read_s3_data, op_kwargs={
+    }, dag=dag)
+
 
 # t2 = PythonOperator(
 #     task_id='data_processing', python_callable=data_processing, op_kwargs={
 #     }, dag=dag)
 
-t1
-#t1 >> t2
+t1 
