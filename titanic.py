@@ -6,7 +6,7 @@ from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python_operator import PythonOperator
 
 default_args = {
-    "owner": "uia81723",
+    "owner": "airflow",
     "depends_on_past": False,
     "start_date": datetime(2015, 6, 1),
     "email": ["airflow@airflow.com"],
