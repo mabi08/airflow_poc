@@ -4,9 +4,7 @@ import pandas as pd
 
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python_operator import PythonOperator
-from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
 
 default_args = {
     "owner": "y",
@@ -65,14 +63,6 @@ def read_s3_data(**kwargs):
 
 def data_processing(**context):
     print("t2")
-
-
-# t1 = KubernetesPodOperator(
-#     image="python:3.8-slim",
-#     task_id='read_s3_data',
-#     namespace="airflow-ng",
-#     name="read-s3-data",
-#     dag=dag)
 
 t1 = PythonOperator(
     task_id='read_s3_data', python_callable=read_s3_data, op_kwargs={
